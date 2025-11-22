@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sqlmodel
+apscheduler
+openai
+pypdf
+python-multipart
+google-generativeai
+python-dotenv
+reportlab
