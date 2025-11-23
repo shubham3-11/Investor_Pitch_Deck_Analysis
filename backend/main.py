@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 import shutil
 from typing import List
-from fastapi import FastAPI, Depends, UploadFile, File, HTTPException
+from fastapi import FastAPI, Depends, UploadFile, File, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Session, select
 from contextlib import asynccontextmanager
@@ -81,7 +81,7 @@ def read_startup(startup_id: int, session: Session = Depends(get_session)):
 
 # Decks
 @app.post("/api/decks", response_model=Deck)
-def create_deck(startup_id: int, file: UploadFile = File(...), session: Session = Depends(get_session)):
+def create_deck(startup_id: int = Form(...), file: UploadFile = File(...), session: Session = Depends(get_session)):
     file_location = f"uploads/{file.filename}"
     # Ensure unique filename if needed, but for now simple overwrite or append timestamp
     # Let's append timestamp to be safe

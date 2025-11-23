@@ -9,7 +9,7 @@ from llm_service import summarize_deck, extract_claims, assess_claim, generate_q
 scheduler = BackgroundScheduler()
 
 def process_new_decks():
-    print("Running process_new_decks job...")
+    # print("Running process_new_decks job...")
     with Session(engine) as session:
         statement = select(Deck).where(Deck.processed == False)
         decks = session.exec(statement).all()
